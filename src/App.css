@@ -1,22 +1,51 @@
 .App {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.Nav {
+  text-align: center;
+}
+.Nav ul {
+  display: inline-flex;
+}
+
+.total--wrapper {
+  border: 1px solid black;
+  width: 10rem;
+  box-shadow: 2px 2px 2px 2px black;
+  margin: 2rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.addForm--wrapper {
+  border: 1px solid black;
+  height: 20rem;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.addForm {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+label {
+  padding-top: 1rem;
+  display: flex;
+}
+input {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding-left: 2rem;
+  margin-left: 2rem;
 }
 
-.App-link {
-  color: #09d3ac;
+.dashHome {
+  display: flex;
+  flex-direction: row;
 }
