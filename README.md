@@ -1,3 +1,3 @@
-#React Dashboard
-##Tech used:
+# React Dashboard
+## Tech used:
 ### HTML, CSS, JS, REACT, Express
