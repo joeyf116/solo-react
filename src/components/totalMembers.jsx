@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import loadData from '../utils/loadData';
-import Chart from './chart';
 
 
 class TotalMembers extends Component {
@@ -37,7 +36,6 @@ class TotalMembers extends Component {
                 <h1>{members.length}</h1>
             </div>
             </div>
-            <Chart />
             </>
         );
     }

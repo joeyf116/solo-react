@@ -1,37 +1,23 @@
-import React, { useState } from 'react';
-import Members from './members';
-import AddMember from './addMembers';
-import TotalMembers from './totalMembers'
+import React, { Component } from 'react';
+import kuzushi from '../images/icons/Kuzushi.png';
 
-const Heading = () => {
-    const [page, setPage] = useState('home');
+class Heading extends Component {
+    state = {  }
 
-    const handleClick = e => {
-        const { value } = e.target;
-        setPage(value);
-    }
-    
-    return(
-    <>
-    <div className='Nav'>
+    render() { 
+        return ( 
+            <div className="Heading">
         <ul>
             <li>
-                <button onClick={handleClick} value="home"><i class="fas fa-home"></i> Home</button>
+                <img src={kuzushi} />
             </li>
             <li>
-                <button onClick={handleClick} value="members">Members</button>
-            </li>
-            <li>
-                <button onClick={handleClick} value="addMember">Add Member</button>
+                <h1>Heading</h1> 
             </li>
         </ul>
         </div>
-        {page === 'members' ? <Members /> : null}
-        {page === 'addMember' ? <AddMember /> : null}
-        {page === 'home' ? <TotalMembers /> : null}
-    </>
-    )
+        );
+    }
 }
-
-
+ 
 export default Heading;
