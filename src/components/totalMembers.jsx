@@ -11,7 +11,7 @@ class TotalMembers extends Component {
             `http://localhost:3333/`
             ); 
             const members = data;
-            console.log(members);
+            
 
         this.setState({
             members

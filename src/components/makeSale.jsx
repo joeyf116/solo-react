@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import loadData from '../utils/loadData';
 import white from "../images/inventory/whiteRashguard.jpg";
+import TotalSales from './TotalSales';
 
 class makeSale extends Component {
     state = { 
-        items: [],
-        members: []
+        members: [],
+        member_id: 1,
+        cost: '$64.99',
+        item: "Rashguard"
      }
 
      async componentDidMount() {
@@ -13,7 +16,7 @@ class makeSale extends Component {
             `http://localhost:3333/`
             ); 
             const members = data;
-            console.log(members);
+            // console.log(members);
 
         this.setState({
             members
@@ -22,62 +25,60 @@ class makeSale extends Component {
 
      handleClick = (e) => {
         e.preventDefault();
-
+        const data = this.state;
+        this.addSale(data)
      }
 
+     handleChange = e => {
+         const { value } = e.target;
+         console.log(e.target);
+         this.setState({
+             member_id: value
+         });
+     };
+
+     addSale = async data => {
+        const response = await fetch("http://localhost:3333/members", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+        // console.log(data)
+        const reply = await response;
+        if (reply.status === 200) {
+          alert("Sale Made!");
+        }
+        if (reply.status !== 200) {
+          alert("Sale Failed");
+        }
+      };
+
     render() { 
-        const { members } = this.state;
+        const { members, member_id } = this.state;
         return ( 
             <>
             <div className="dashSale">
             <div className="inventory">
             <h1>Inventory</h1>
+                <form>
                 <div className="item">
                     <h2>Rashguard</h2>
-                    <img src={white}></img>
+                    <img src={white} alt="Rashguard"></img>
                     <p>Price: $64.99</p>
-                    <select className="selectInventory">
+                    <select className="selectInventory" onChange={this.handleChange}>
                     {members.map(m => 
-                        <option key={m.id}>{m.name}</option>
+                        <option key={m.id} value={m.id} name={member_id}>{m.name}</option>
                     )}
                     </select>
                     <button onClick={this.handleClick}className="purchase">Purchase</button>
                 </div>
-                <div className="item">
-                    <h2>Rashguard</h2>
-                    <img src={white}></img>
-                    <p>Price: $64.99</p>
-                    <select className="selectInventory">
-                    {members.map(m => 
-                        <option key={m.id}>{m.name}</option>
-                    )}
-                    </select>
-                    <button className="purchase">Purchase</button>
+                </form>
                 </div>
-                <div className="item">
-                    <h2>Rashguard</h2>
-                    <img src={white}></img>
-                    <p>Price: $64.99</p>
-                    <select className="selectInventory">
-                    {members.map(m => 
-                        <option key={m.id}>{m.name}</option>
-                    )}
-                    </select>
-                    <button className="purchase">Purchase</button>
                 </div>
-                <div className="item">
-                    <h2>Rashguard</h2>
-                    <img src={white}></img>
-                    <p>Price: $64.99</p>
-                    <select className="selectInventory">
-                    {members.map(m => 
-                        <option key={m.id}>{m.name}</option>
-                    )}
-                    </select>
-                    <button className="purchase">Purchase</button>
-                </div>
-            </div>
-            </div>
+                <TotalSales />
             </>
          );
     }

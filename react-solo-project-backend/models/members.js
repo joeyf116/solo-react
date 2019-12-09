@@ -19,9 +19,11 @@ class Member {
       }
     }
 
-    static async removeMember(id) {
+    static async updateMember(id, status) {
+      console.log("ID + status: ", id, status)
+      const query = `UPDATE members SET status = '${status}' where id = ${id}`
       try {
-        const response = await db.one(`delete from members where id = ${id}`);
+        const response = await db.one(query, [id, status]);
         return response;
       } catch (err) {
         return err.message;
@@ -39,6 +41,30 @@ class Member {
         return err.message;
       }
     }
+
+    static async addSale(member_id, cost, item) {
+      try {
+          const response = await db.one(`INSERT INTO sales
+          (member_id, cost, item) 
+          VALUES ($1, $2, $3)
+          RETURNING id;`
+          , [member_id, cost, item]);
+          
+          return response;
+
+      }catch(err) {
+          return err.message;
+      }
+  }
+
+  static async getSales() {
+    try {
+      const response = await db.any(`select * from sales;`);
+      return response;
+    } catch (err) {
+      return err.message;
+    }
+  }
 }
 
 module.exports = Member;

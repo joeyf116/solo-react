@@ -12,7 +12,7 @@ const Main = () => {
     const [page, setPage] = useState('home');
 
     const handleClick = e => {
-        console.log(e.currentTarget)
+        // console.log(e.currentTarget)
         const { value } = e.currentTarget;
         setPage(value);
     }
@@ -22,16 +22,16 @@ const Main = () => {
     <div className='Nav'>
         <ul>
             <li>
-                <button onClick={handleClick} value="home"><img src={home} /></button>
+                <button onClick={handleClick} value="home"><img src={home} alt="holder" /></button>
             </li>
             <li>
-                <button onClick={handleClick} value="members"><img src={members} /></button>
+                <button onClick={handleClick} value="members"><img src={members}alt="holder" /></button>
             </li>
             <li>
-                <button onClick={handleClick} value="addMember"><img src={addUser} /></button>
+                <button onClick={handleClick} value="addMember"><img src={addUser}alt="holder" /></button>
             </li>
             <li>
-                <button onClick={handleClick} value="makeSale"><img src={makeSale} /></button>
+                <button onClick={handleClick} value="makeSale"><img src={makeSale}alt="holder" /></button>
             </li>
         </ul>
         </div>

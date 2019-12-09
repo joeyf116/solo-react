@@ -9,7 +9,7 @@ class Heading extends Component {
             <div className="Heading">
         <ul>
             <li>
-                <img src={kuzushi} />
+                <img src={kuzushi} alt="Kuzushi" />
             </li>
             <li>
                 <h1>Heading</h1> 
